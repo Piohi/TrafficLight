@@ -20,11 +20,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setUpStartLights()
         changeColorButton.setTitle("START", for: .normal)
+        changeColorButton.layer.cornerRadius = changeColorButton.layer.frame.height / 3
     }
     
     func setUpStartLights() {
         boxOfLight.layer.cornerRadius = boxOfLight.frame.width / 4
-        changeColorButton.layer.cornerRadius = changeColorButton.layer.frame.height / 3
         redColorCircle.frame.size.height = UIScreen.main.bounds.height / 6.67
         redColorCircle.frame.size.width = redColorCircle.frame.size.height
         redColorCircle.layer.cornerRadius = redColorCircle.frame.height / 2
