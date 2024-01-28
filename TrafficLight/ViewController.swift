@@ -7,14 +7,16 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
     
     @IBOutlet var changeColorButton: UIButton!
+    
     @IBOutlet var redColorCircle: UIView!
     @IBOutlet var yellowColorCircle: UIView!
     @IBOutlet var greenColorCircle: UIView!
     @IBOutlet var boxOfLight: UIView!
-    var numberOfLight: Int = 0
+    
+    private var numberOfLight = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +25,7 @@ class ViewController: UIViewController {
         changeColorButton.layer.cornerRadius = changeColorButton.layer.frame.height / 3
     }
     
-    func setUpStartLights() {
+    private func setUpStartLights() {
         boxOfLight.layer.cornerRadius = boxOfLight.frame.width / 4
         redColorCircle.frame.size.height = UIScreen.main.bounds.height / 6.67
         redColorCircle.frame.size.width = redColorCircle.frame.size.height
