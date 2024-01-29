@@ -14,7 +14,10 @@ final class ViewController: UIViewController {
     @IBOutlet var redColorCircle: UIView!
     @IBOutlet var yellowColorCircle: UIView!
     @IBOutlet var greenColorCircle: UIView!
-    @IBOutlet var boxOfLight: UIView!
+    
+    @IBOutlet var boxOfGreenLight: UIView!
+    @IBOutlet var boxOfYellowLight: UIView!
+    @IBOutlet var boxOfRedLight: UIView!
     
     private var numberOfLight = 0
     
@@ -26,7 +29,16 @@ final class ViewController: UIViewController {
     }
     
     private func setUpStartLights() {
-        boxOfLight.layer.cornerRadius = boxOfLight.frame.width / 4
+        boxOfRedLight.layer.borderWidth = 5
+        boxOfRedLight.layer.borderColor = UIColor.black.cgColor
+        boxOfRedLight.layer.cornerRadius = 10
+        boxOfYellowLight.layer.borderWidth = 5
+        boxOfYellowLight.layer.borderColor = UIColor.black.cgColor
+        boxOfYellowLight.layer.cornerRadius = 10
+        boxOfGreenLight.layer.borderWidth = 5
+        boxOfGreenLight.layer.borderColor = UIColor.black.cgColor
+        boxOfGreenLight.layer.cornerRadius = 10
+        
         redColorCircle.frame.size.height = UIScreen.main.bounds.height / 6.67
         redColorCircle.frame.size.width = redColorCircle.frame.size.height
         redColorCircle.layer.cornerRadius = redColorCircle.frame.height / 2
