@@ -19,7 +19,9 @@ final class ViewController: UIViewController {
     @IBOutlet var boxOfYellowLight: UIView!
     @IBOutlet var boxOfRedLight: UIView!
     
-    private var numberOfLight = 0
+    private var curentLight = CurrentLight.red
+    private let lightIsOn = 1.0
+    private let lightIsOff = 0.3
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,47 +41,43 @@ final class ViewController: UIViewController {
         boxOfGreenLight.layer.borderColor = UIColor.black.cgColor
         boxOfGreenLight.layer.cornerRadius = 10
         
-        redColorCircle.frame.size.height = UIScreen.main.bounds.height / 6.67
-        redColorCircle.frame.size.width = redColorCircle.frame.size.height
+        redColorCircle.alpha = lightIsOff
+        yellowColorCircle.alpha = lightIsOff
+        greenColorCircle.alpha = lightIsOff
+    }
+    
+    override func viewWillLayoutSubviews() {
         redColorCircle.layer.cornerRadius = redColorCircle.frame.height / 2
-        redColorCircle.alpha = 0.2
-        yellowColorCircle.frame.size.height = UIScreen.main.bounds.height / 6.67
-        yellowColorCircle.frame.size.width = yellowColorCircle.frame.size.height
         yellowColorCircle.layer.cornerRadius = yellowColorCircle.frame.height / 2
-        yellowColorCircle.alpha = 0.2
-        greenColorCircle.frame.size.height = UIScreen.main.bounds.height / 6.67
-        greenColorCircle.frame.size.width = greenColorCircle.frame.size.height
         greenColorCircle.layer.cornerRadius = greenColorCircle.frame.height / 2
-        greenColorCircle.alpha = 0.2
     }
     
     @IBAction func buttonPresed(_ sender: UIButton) {
-        changeColorButton.setTitle("NEXT", for: .normal)
-        if numberOfLight == 3 {
-            numberOfLight = 0
+        
+        if changeColorButton.currentTitle == "START" {
+            changeColorButton.setTitle("NEXT", for: .normal)
         }
-        switch numberOfLight {
-        case 0:
-            redColorCircle.alpha = 1
-            yellowColorCircle.alpha = 0.2
-            greenColorCircle.alpha = 0.2
-            numberOfLight += 1
-        case 1:
-            redColorCircle.alpha = 0.2
-            yellowColorCircle.alpha = 1
-            greenColorCircle.alpha = 0.2
-            numberOfLight += 1
-        case 2:
-            redColorCircle.alpha = 0.2
-            yellowColorCircle.alpha = 0.2
-            greenColorCircle.alpha = 1
-            numberOfLight += 1
-        default:
-            redColorCircle.alpha = 0.2
-            redColorCircle.alpha = 0.2
-            redColorCircle.alpha = 0.2
+        
+        
+        switch curentLight {
+        case .red:
+            greenColorCircle.alpha = lightIsOff
+            redColorCircle.alpha = lightIsOn
+            curentLight = .yellow
+        case .yellow:
+            redColorCircle.alpha = lightIsOff
+            yellowColorCircle.alpha = lightIsOn
+            curentLight = .green
+        case .green:
+            yellowColorCircle.alpha = lightIsOff
+            greenColorCircle.alpha = lightIsOn
+            curentLight = .red
         }
     }
 }
 
-
+extension ViewController {
+    enum CurrentLight {
+        case red, yellow, green
+    }
+}
